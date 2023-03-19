@@ -1,0 +1,1 @@
+# shame-classes-version
