@@ -1,0 +1,27 @@
+.taskItem {
+    width: 100%;
+}
+.taskIncludeYN {
+    width: 15%;
+}
+
+.taskName {
+    width: 65%
+}
+
+.weeklyTarget, .totalTarget {
+    width: 10%;
+}
+
+.taskListTd{
+    vertical-align: bottom;
+    line-height:1em; 
+}
+
+.totalTarget{
+    font-size: .9em;
+}
+
+.streakTarget{
+    font-size:.9em;
+}

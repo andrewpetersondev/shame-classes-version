@@ -1,0 +1,61 @@
+body{
+    background-color: white;
+}
+
+.date-heading {
+    text-align: center;
+}
+
+.date-changer {
+    text-align: center;
+}
+
+.goal-row {
+   text-align: left;
+}
+
+.date-item {
+    text-align: center;
+    margin:0;
+}
+
+.task-complete {
+    background-color:#e74c3c;
+    cursor: default;
+}
+
+.task-incomplete {
+    background-color: #ecf0f1;
+    cursor: default;
+}
+
+.task-goal-met {
+    font-weight: bold;
+    background-color: #f66e5e;
+}
+
+.task-goal-unmet {
+    font-weight: lighter;
+}
+
+thead{
+    font-weight:bolder;
+   background-color:#fbd900;
+   line-height: .5em;
+   padding:.5em;
+}
+
+tr{
+    margin:0;
+}
+
+td{
+    margin:0;
+}
+
+.taskName{
+    font-weight:boldest;
+    line-height: 1em;
+    margin:0;
+    letter-spacing: -.04em;
+}

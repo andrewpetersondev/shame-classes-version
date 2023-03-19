@@ -1,0 +1,27 @@
+.goal-card {
+    display: inline-block;
+    width: 15em;
+    height: 12em;
+    margin-right: 15px;
+    padding: 10px;
+    border: 5px solid #d4d600;
+    border-radius: 15px;
+    background-color:#d4d600;
+    color: #0e184b;
+    cursor: default;
+    cursor: copy;
+}
+
+.goal-card-body {
+    color: #0e184b;
+    padding-top:2.5em;
+}
+
+.goalCardHeader{
+    height: .8em;
+    line-height: 1em;
+    font-style: italic;
+    font-weight: 700;
+    color: #ffffff;
+
+}

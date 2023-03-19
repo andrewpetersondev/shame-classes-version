@@ -1,0 +1,14 @@
+.taskListHead {
+    font-weight: bold;
+    color: #0e184b;
+    background-color:#fbd900;
+    height: 5em;
+    padding:1em;
+    border-bottom: 1px solid #0e184b;
+}
+
+td{
+    height: 2em;
+    line-height:.9em;
+    border-bottom: 1px solid white;
+}

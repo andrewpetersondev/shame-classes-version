@@ -1,0 +1,107 @@
+.rowAbout{
+    margin-left: 50px;
+    background-image: url("/images/crumplyBG.png");
+    margin:0;
+    align-content:center;
+}
+
+.aboutUsHeader{
+    text-align: center;
+    font-family: "Space Mono", monospace;
+    font-size: 3.4em;
+    font-weight:700;
+    font-style: italic;
+    padding: .5em;
+    color: #0e184b;
+    background-color: #d4d600;
+    text-transform: lowercase;
+    margin: 0;
+    padding-top: 1em;
+}
+
+.aboutUsCopy{
+    text-align: center;
+    font-family: "Space Mono", monospace;
+    letter-spacing:-.05em;
+    font-style: italic;
+    font-size: 1.6em;
+    font-weight:400;
+    margin: 0;
+    padding: 0 25% 6% 25%;
+    background-color: #d4d600;
+}
+
+.rowInfoCards{
+    text-align: center;
+    margin:3% 15%;
+}
+
+.infoCardImg{
+    height: 8em;
+}
+
+.heroImg{
+text-align: center;
+margin: 5% 0 0;
+height: 13em;
+}
+
+.heroImgDiv{
+    margin: 0;
+    background-color: #d4d600; 
+    text-align: center;
+    align-items: baseline;
+}
+
+.infoCardHeading{
+    font-weight: 700;
+    font-style: italic;
+    line-height: 1.2em;
+    font-size: 1.9em;
+    letter-spacing: -.02em;
+    padding: .8em .6em 0;
+    color: #f66e5e;
+}
+
+.infoCardCol{
+    margin: 1em 2em 0;
+    width: 4em;
+}
+
+.getStartedRow{
+    text-align: center;
+    margin: 0;
+    padding: 2em; 
+}
+
+.getStartedHeader{
+    text-align: left;
+    font-family: "Space Mono", monospace;
+    font-size: 3.4em;
+    font-weight:700;
+    font-style: italic;
+    padding: .5em;
+    color: #ffffff;
+    text-transform: lowercase;
+    margin: 0;
+    padding-top: 1em;
+    padding-left: 9em;
+}
+
+.getStartedBody{
+    text-align: left;
+    font-family: "Space Mono", monospace;
+    letter-spacing:-.05em;
+    font-style: italic;
+    font-size: 1.6em;
+    font-weight:400;
+    color: #ffffff;
+    margin: 0;
+    padding: 0 2em 3em 20em;
+}
+
+.getStartedRow{
+    margin:0;
+    background-image: url("/images/letsGetStartedBG.jpg");
+    text-align:center;
+}
