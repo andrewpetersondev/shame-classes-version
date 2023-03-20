@@ -25,5 +25,10 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "devDependencies": {}
+  "devDependencies": {},
+  "engines": {
+    "node": "11.15.0",
+    "npm": "6.7.0",
+    "v8": "7.0.276.38"
+  }
 }
