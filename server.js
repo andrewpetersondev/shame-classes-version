@@ -32,7 +32,11 @@ mongoose.connect(uri, {
 const connection = mongoose.connection;
 connection.once("open", () => {
   console.log("mongoDB database connection established successfully");
-});
+}).then(() => {
+  console.log('connected to MongoDB');
+}).catch((error) => {
+  console.error("error connecting to mongoDB: ", error.message)
+})
 
 // Start the API server
 app.listen(PORT, function () {
