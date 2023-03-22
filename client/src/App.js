@@ -96,13 +96,13 @@ class App extends React.Component {
             visualizerDates: [],
             visualizerData: [],
             userGoals: []
-            });        
-            // get initial categories
-            this.getCategories();
-            // set initial visualizer date range
-            let now = moment().startOf('day').format('M/D/YYYY');
-            let startDate = moment(now).subtract(this.state.numVisualizerDays - 1 ,'days');
-            this.resetVisualizerDates(startDate,this.state.numVisualizerDays);
+        });
+        // get initial categories
+        this.getCategories();
+        // set initial visualizer date range
+        let now = moment().startOf('day').format('M/D/YYYY');
+        let startDate = moment(now).subtract(this.state.numVisualizerDays - 1, 'days');
+        this.resetVisualizerDates(startDate, this.state.numVisualizerDays);
     }
 
     resetVisualizerDates = (startDate, numDays) => {
@@ -117,14 +117,14 @@ class App extends React.Component {
     }
 
     changeVisualizerDates = (numdays) => {
-        let startDate = moment(this.state.visualizerDates[0]).add(numdays,'days')
+        let startDate = moment(this.state.visualizerDates[0]).add(numdays, 'days')
         let now = moment().startOf('day').format('M/D/YYYY');
         if (
-            moment(now).subtract(this.state.numVisualizerDays - 1 ,'days') < moment(this.state.visualizerDates[0]).add(numdays,'days')
-            ) {
-                startDate = moment(now).subtract(this.state.numVisualizerDays - 1 ,'days')
-            }
-        this.resetVisualizerDates(startDate,this.state.numVisualizerDays);
+            moment(now).subtract(this.state.numVisualizerDays - 1, 'days') < moment(this.state.visualizerDates[0]).add(numdays, 'days')
+        ) {
+            startDate = moment(now).subtract(this.state.numVisualizerDays - 1, 'days')
+        }
+        this.resetVisualizerDates(startDate, this.state.numVisualizerDays);
         this.getUserDetails(localStorage.getItem('userKey'));
     }
 
@@ -138,7 +138,7 @@ class App extends React.Component {
         if (event.target.name === "categoryId") {
             this.getGoalsInCategory(event.target.value);
             this.getCategoryMatch(event.target.value);
-            }
+        }
         // when goalId changes, load the tasks for that goal
         if (event.target.name === "goalId") {
             this.getTasksInGoal(event.target.value);
@@ -170,48 +170,48 @@ class App extends React.Component {
             })
             .catch(error => {
                 console.log(error);
-            })        
+            })
     }
 
     handleLoginFormSubmit = event => {
-    event.preventDefault();
-    // console.log("login submit clicked");
-    let loginData = {
-        email: this.state.email,
-        password: this.state.password
-    };
-    // console.log(loginData);
-    API.authenticateUser(loginData)
-        .then(jsonData => {
-            let userData = jsonData.data;
-            // console.log(userData);
-            if (userData.length === 0) {
-                console.log("login failed");
-                let failedCount = this.state.failedLoginAttempts + 1;
-                this.setState({
-                    failedLoginAttempts: failedCount,
-                    email: "",
-                    password: "",
-                    isAuthenticated: false
-                });
-            } else if (userData.length === 1) {
-                // console.log("login successful");
-                this.setState({
-                    loginMessage: "",
-                    firstName: userData[0].firstName,
-                    lastName: userData[0].lastName,
-                    email: userData[0].email
-                });
-                this.setUserSession(userData[0]._id);
-                this.getUserDetails(userData[0]._id);
-                this.setupUserGoals(this.state.userGoals)
-            } else {
-              console.log("WTF??!  How did you get more than 1??");
-            }
-        })
-        .catch(error => {
-            console.log(error);
-        });
+        event.preventDefault();
+        // console.log("login submit clicked");
+        let loginData = {
+            email: this.state.email,
+            password: this.state.password
+        };
+        // console.log(loginData);
+        API.authenticateUser(loginData)
+            .then(jsonData => {
+                let userData = jsonData.data;
+                // console.log(userData);
+                if (userData.length === 0) {
+                    console.log("login failed");
+                    let failedCount = this.state.failedLoginAttempts + 1;
+                    this.setState({
+                        failedLoginAttempts: failedCount,
+                        email: "",
+                        password: "",
+                        isAuthenticated: false
+                    });
+                } else if (userData.length === 1) {
+                    // console.log("login successful");
+                    this.setState({
+                        loginMessage: "",
+                        firstName: userData[0].firstName,
+                        lastName: userData[0].lastName,
+                        email: userData[0].email
+                    });
+                    this.setUserSession(userData[0]._id);
+                    this.getUserDetails(userData[0]._id);
+                    this.setupUserGoals(this.state.userGoals)
+                } else {
+                    console.log("WTF??!  How did you get more than 1??");
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            });
     };
 
     handleCategoryFormSubmit = event => {
@@ -221,7 +221,7 @@ class App extends React.Component {
             categoryName: this.state.categoryName,
             categoryTagLine: this.state.categoryTagLine,
             categoryImgSrc: this.state.categoryImgSrc
-            };
+        };
         // console.log(categoryData);
         API.addCategory(categoryData)
             .then(jsonData => {
@@ -274,7 +274,7 @@ class App extends React.Component {
             this.setState({
                 showTaskOverlay: false,
                 showOkDialog: true
-            });    
+            });
         } else {
             // user is NOT logged in
             // user must REGISTER or LOGIN
@@ -358,7 +358,7 @@ class App extends React.Component {
     getUserDetails = (userId) => {
         // console.log('loading user details')
         API.getUserDetails(userId)
-            .then( jsonData => {
+            .then(jsonData => {
                 // console.log(jsonData);
                 let userData = jsonData.data;
                 // update state with user data
@@ -380,7 +380,7 @@ class App extends React.Component {
         // this appears to be needed becuase React sees the array nodes in the API results as Object rather than an array of Objects   
         let visualizerData = [];
         let dbUserGoals = userData.userGoals;
-        for (let g = 0; g < dbUserGoals.length; g ++) {
+        for (let g = 0; g < dbUserGoals.length; g++) {
             let userGoalId = dbUserGoals[g]._id;
             let goalId = dbUserGoals[g].goalId._id;
             let goalName = dbUserGoals[g].goalId.goalName;
@@ -398,9 +398,9 @@ class App extends React.Component {
                     let timelineId = 'null';
                     for (let ul = 0; ul < dbUserTimeline.length; ul++) {
                         if (
-                                moment.utc(dbUserTimeline[ul].taskDate).format('M/D/YYYY') === moment.utc(currentDate).format('M/D/YYYY') &&
-                                dbUserTimeline[ul].taskId === dbUserTasks[t]._id
-                            ) {
+                            moment.utc(dbUserTimeline[ul].taskDate).format('M/D/YYYY') === moment.utc(currentDate).format('M/D/YYYY') &&
+                            dbUserTimeline[ul].taskId === dbUserTasks[t]._id
+                        ) {
                             taskCompleted = dbUserTimeline[ul].taskCompletedYN;
                             timelineId = dbUserTimeline[ul]._id
                         }
@@ -448,7 +448,7 @@ class App extends React.Component {
             // determine how many tasks and number completed to track goal progress
             let numTasks = 0
             let numCompletedTasks = 0;
-            let goalPercent = 0;            
+            let goalPercent = 0;
 
             for (let t = 0; t < visualizerData[g].userTasks.length; t++) {
                 // task loop within goal
@@ -462,7 +462,7 @@ class App extends React.Component {
                 let taskTotalTarget = visualizerData[g].userTasks[t].taskTotalTarget;
                 // get timeline entries for task
                 await API.getTaskTimeline(taskId, userGoalId)
-                    .then( dbTaskTimeline => {
+                    .then(dbTaskTimeline => {
                         // cycle through timeline for 
                         let currentStreak = 0;
                         let longestStreak = 0;
@@ -480,27 +480,27 @@ class App extends React.Component {
                             // console.log(taskStartDate.format('M/D/YYYY'),'thru', taskEndDate.format('M/D/YYYY'))
                             for (let d = 0; d < numDays; d++) {
                                 // test if the date d from start date (ddate) is the same as the current index of the timeline (idate)
-                                let ddate = moment(taskStartDate).add(d,'days').format('M/D/YYYY').toString();
+                                let ddate = moment(taskStartDate).add(d, 'days').format('M/D/YYYY').toString();
                                 let idate = moment(dbrecord[dateIndex].taskDate).format('M/D/YYYY').toString();
                                 // console.log(ddate, idate);
-                                if ( 
+                                if (
                                     ddate === idate
-                                    ) {
-                                        // console.log(ddate,idate,dateIndex, dbrecord[dateIndex].taskCompletedYN)
-                                        if (dbrecord[dateIndex].taskCompletedYN) {
-                                            // if the task is completed on this date
-                                            currentStreak++;  // increment current streak
-                                            if (currentStreak > longestStreak) {longestStreak = currentStreak} // if the current is > longest, reset longest
-                                            totalCompleted++; // increment total completed
-                                        } else {
-                                            // this should not be reached (since incompelte dates are going to be missing)... but in case something changes...
-                                            currentStreak = 0; // reset the current streak
-                                        }
-                                        // increase the dateIndex
-                                        if (dateIndex < dateIndexMax) {dateIndex ++};
+                                ) {
+                                    // console.log(ddate,idate,dateIndex, dbrecord[dateIndex].taskCompletedYN)
+                                    if (dbrecord[dateIndex].taskCompletedYN) {
+                                        // if the task is completed on this date
+                                        currentStreak++;  // increment current streak
+                                        if (currentStreak > longestStreak) { longestStreak = currentStreak } // if the current is > longest, reset longest
+                                        totalCompleted++; // increment total completed
                                     } else {
-                                        currentStreak = 0;
+                                        // this should not be reached (since incompelte dates are going to be missing)... but in case something changes...
+                                        currentStreak = 0; // reset the current streak
                                     }
+                                    // increase the dateIndex
+                                    if (dateIndex < dateIndexMax) { dateIndex++ };
+                                } else {
+                                    currentStreak = 0;
+                                }
                             }
                         }
                         // console.log(taskId, currentStreak, longestStreak, totalCompleted);
@@ -523,18 +523,18 @@ class App extends React.Component {
             if (numTasks === 0) {
                 goalPercent = 100;
             } else {
-                goalPercent = Math.floor(100 * numCompletedTasks/numTasks);
+                goalPercent = Math.floor(100 * numCompletedTasks / numTasks);
             }
             // add the goal Percent
             // console.log(visualizerData[g].goalName, numCompletedTasks, numTasks, goalPercent);
             visualizerData[g].goalPercent = goalPercent;
             // update database with goalpercent
             await API.updateGoalPercent(visualizerData[g].userGoalId, goalPercent)
-                .then( dbUserGoal => {
+                .then(dbUserGoal => {
                     // console.log(dbUserGoal)
                     let returnData = dbUserGoal.data;
                 })
-                .catch( dbError => console.log(dbError) )
+                .catch(dbError => console.log(dbError))
         }
         this.setState({
             visualizerData: visualizerData
@@ -558,7 +558,7 @@ class App extends React.Component {
     loginClick = () => {
         // console.log("logging in...");
         this.setState({
-          showLogin: true
+            showLogin: true
         });
     };
 
@@ -604,7 +604,7 @@ class App extends React.Component {
         return (
             <Router>
                 <div>
-                    <Navbar 
+                    <Navbar
                         isAuthenticated={this.state.isAuthenticated}
                         handleLogout={this.logoutClick}
                         handleLogin={this.loginClick}
@@ -612,41 +612,50 @@ class App extends React.Component {
                     />
                     <LoginForm
                         email={this.state.email}
-                        password={this.state.password} 
+                        password={this.state.password}
                         showLogin={this.state.showLogin}
                         failedLoginAttempts={this.state.failedLoginAttempts}
                         handleOnChange={this.handleOnChange}
                         handleLoginFormSubmit={this.handleLoginFormSubmit}
                         handleLoginClose={this.loginClose}
                         message={this.state.loginMessage}
-                        />
+                    />
                     <Switch>
-                        <Route exact path='/' render={
-                            (props) => <Home {...props} 
-                            categories={this.state.categories}
-                            getCategoryMatch={this.getCategoryMatch}
-                            />}
+                        <Route
+                            exact
+                            path='/'
+                            render={
+                                (props) => <Home {...props}
+                                    categories={this.state.categories}
+                                    getCategoryMatch={this.getCategoryMatch}
+                                />}
                         />
-                        <Route exact path='/register' render={(props) => <Register {...props}
-                            firstName={this.state.firstName}
-                            lastName={this.state.lastName}
-                            email={this.state.email}
-                            password={this.state.password}
-                            handleOnChange={this.handleOnChange}
-                            setUserSession={this.setUserSession}
-                            loginClose={this.loginClose}
+                        <Route
+                            exact
+                            path='/register'
+                            render={(props) => <Register {...props}
+                                firstName={this.state.firstName}
+                                lastName={this.state.lastName}
+                                email={this.state.email}
+                                password={this.state.password}
+                                handleOnChange={this.handleOnChange}
+                                setUserSession={this.setUserSession}
+                                loginClose={this.loginClose}
                             />}
                         />
 
-                        <Route exact path='/addgoal' render={ (props) => <AddGoal {...props}
+                        <Route
+                            exact
+                            path='/addgoal'
+                            render={(props) => <AddGoal {...props}
                                 categoryId={this.state.categoryId}
                                 selectedCategory={this.state.selectedCategory}
                                 handleOnChange={this.handleOnChange}
                                 getCategories={this.getCategories}
-                                categories={this.state.categories} 
-                                goals={this.state.goals}    
-                                selectGoal={this.selectGoal}    
-                                showTaskOverlay={this.state.showTaskOverlay}   
+                                categories={this.state.categories}
+                                goals={this.state.goals}
+                                selectGoal={this.selectGoal}
+                                showTaskOverlay={this.state.showTaskOverlay}
                                 selectedGoal={this.state.selectedGoal}
                                 tasks={this.state.tasks}
                                 getCategoryMatch={this.getCategoryMatch}
@@ -657,19 +666,25 @@ class App extends React.Component {
                                 clearCategory={this.clearCategory}
                             />}
                         />
-                        <Route exact path="/manage" render={ (props) => <Manage {...props}
+                        <Route
+                            exact
+                            path="/manage"
+                            render={(props) => <Manage {...props}
                                 handleOnChange={this.handleOnChange}
                                 // userGoals={this.state.userGoals}
                                 userGoals={this.state.visualizerData}
                                 getUserDetails={this.getUserDetails}
-                                selectGoal={this.selectGoal}    
-                                showTaskOverlay={this.state.showTaskOverlay}   
+                                selectGoal={this.selectGoal}
+                                showTaskOverlay={this.state.showTaskOverlay}
                                 selectedGoal={this.state.selectedGoal}
                                 tasks={this.state.tasks}
                             />}
                         />
 
-                        <Route exact path='/progress' render={ (props) => <Progress {...props} 
+                        <Route
+                            exact
+                            path='/progress'
+                            render={(props) => <Progress {...props}
                                 visualizerDates={this.state.visualizerDates}
                                 visualizerData={this.state.visualizerData}
                                 changeVisualizerDates={this.changeVisualizerDates}
@@ -678,24 +693,27 @@ class App extends React.Component {
                             />}
                         />
 
-                        <Route exact path='/admin' render={(props) => <Admin {...props}
-                            categoryId={this.state.categoryId}
-                            categoryName={this.state.categoryName}
-                            categoryTagLine={this.state.categoryTagLine}
-                            categoryImgSrc={this.state.categoryImgSrc}
-                            categories={this.state.categories}
-                            getCategories={this.getCategories}
-                            goalId={this.state.goalId}
-                            goals={this.state.goals}
-                            getGoalsInCategory={this.getGoalsInCategory}
-                            handleOnChange={this.handleOnChange}
-                            handleCategoryFormSubmit={this.handleCategoryFormSubmit}
-                            handleGoalFormSubmit={this.handleGoalFormSubmit}
-                            taskName={this.state.taskName}
-                            tasks={this.state.tasks}
-                            streakTarget={this.state.streakTarget}
-                            totalTarget={this.state.totalTarget}
-                            handleTaskFormSubmit={this.handleTaskFormSubmit}
+                        <Route
+                            exact
+                            path='/admin'
+                            render={(props) => <Admin {...props}
+                                categoryId={this.state.categoryId}
+                                categoryName={this.state.categoryName}
+                                categoryTagLine={this.state.categoryTagLine}
+                                categoryImgSrc={this.state.categoryImgSrc}
+                                categories={this.state.categories}
+                                getCategories={this.getCategories}
+                                goalId={this.state.goalId}
+                                goals={this.state.goals}
+                                getGoalsInCategory={this.getGoalsInCategory}
+                                handleOnChange={this.handleOnChange}
+                                handleCategoryFormSubmit={this.handleCategoryFormSubmit}
+                                handleGoalFormSubmit={this.handleGoalFormSubmit}
+                                taskName={this.state.taskName}
+                                tasks={this.state.tasks}
+                                streakTarget={this.state.streakTarget}
+                                totalTarget={this.state.totalTarget}
+                                handleTaskFormSubmit={this.handleTaskFormSubmit}
                             />}
                         />
                         <Route component={Error404} />
